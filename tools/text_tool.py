@@ -32,11 +32,11 @@ class TextTool:
     def __init__(self) -> None:
         print("Loading Local SLM (Phi-3-mini) for Generative Triaging...")
         model_id = "microsoft/Phi-3-mini-4k-instruct"
-        config = AutoConfig.from_pretrained(model_id,trust_remote_code=True)
+        config = AutoConfig.from_pretrained(model_id,trust_remote_code=False)
         config.use_cache = False 
-        self.tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
+        self.tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=False)
         self.model = AutoModelForCausalLM.from_pretrained(
-            model_id, config=config, device_map="auto", torch_dtype=torch.float16,trust_remote_code=True
+            model_id, config=config, device_map="auto", torch_dtype=torch.float16,trust_remote_code=False
         )
         self.pipe = pipeline("text-generation", model=self.model, tokenizer=self.tokenizer)
         print("SLM Agent is ready for Classification, NER, and Suggestion Generation!")
