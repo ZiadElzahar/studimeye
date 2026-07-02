@@ -1,5 +1,5 @@
 from typing import Optional, Dict, Any
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, model_validator
 
 class Ticket(BaseModel):
     """Input schema for a support ticket."""
@@ -8,12 +8,12 @@ class Ticket(BaseModel):
     image_path: Optional[str] = None
     audio_path: Optional[str] = None
 
-    @validator('text', 'image_path', 'audio_path', pre=True, always=True)
-    def check_at_least_one(cls, v, values, **kwargs):
-        # Validation ensures at least one modality is present
-        if not any([values.get('text'), v, values.get('audio_path')]):
+    @model_validator(mode='after')  # ← Use model_validator, NOT field_validator
+    def check_at_least_one_modality(self):
+        """At least one modality must be provided."""
+        if not any([self.text, self.image_path, self.audio_path]):
             raise ValueError("At least one modality (text, image_path, audio_path) must be provided.")
-        return v
+        return self
 
 class AgentResult(BaseModel):
     """Output schema for the agent response."""
