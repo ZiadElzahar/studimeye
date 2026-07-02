@@ -34,9 +34,9 @@ class TextTool:
         model_id = "microsoft/Phi-3-mini-4k-instruct"
         config = AutoConfig.from_pretrained(model_id,trust_remote_code=True)
         config.use_cache = False 
-        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
+        self.tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
         self.model = AutoModelForCausalLM.from_pretrained(
-            model_id, config=config, device_map="auto", torch_dtype=torch.float16
+            model_id, config=config, device_map="auto", torch_dtype=torch.float16,trust_remote_code=True
         )
         self.pipe = pipeline("text-generation", model=self.model, tokenizer=self.tokenizer)
         print("SLM Agent is ready for Classification, NER, and Suggestion Generation!")
