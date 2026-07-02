@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 class Router:
     """Routes traffic based on modality presence."""
     
-    def __init__(self, tool_service: ToolService, text_tool, image_tool, speech_tool):
+    def __init__(self, tool_service: ToolService, text_tool, speech_tool ,image_tool=None):
         self.tool_service = tool_service
         self.text_tool = text_tool
         self.image_tool = image_tool
