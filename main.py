@@ -17,8 +17,7 @@ if __name__ == "__main__":
     #   Example 2: voice + Text
     ticket_2 = Ticket(
          ticket_id="T-002",
-         
-         voice_path="/kaggle/input/datasets/birdy654/deep-voice-deepfake-voice-recognition/KAGGLE/AUDIO/REAL/margot-original.wav"
+         audio_path="/kaggle/input/datasets/birdy654/deep-voice-deepfake-voice-recognition/KAGGLE/AUDIO/REAL/margot-original.wav"
  )
     
     result = agent.process(ticket_1)
