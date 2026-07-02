@@ -32,7 +32,7 @@ class TextTool:
     def __init__(self) -> None:
         print("Loading Local SLM (Phi-3-mini) for Generative Triaging...")
         model_id = "microsoft/Phi-3-mini-4k-instruct"
-        config = AutoConfig.from_pretrained(model_id)
+        config = AutoConfig.from_pretrained(model_id,trust_remote_code=True)
         config.use_cache = False 
         self.tokenizer = AutoTokenizer.from_pretrained(model_id)
         self.model = AutoModelForCausalLM.from_pretrained(
