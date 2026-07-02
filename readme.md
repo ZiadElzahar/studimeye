@@ -1,4 +1,3 @@
-fluff.</think>```markdown
 # AI Support Agent API
 
 A production-ready, multimodal AI microservice designed to process customer support tickets. It accepts text, images, and audio, routing them through specialized AI tools (OCR, Speech-to-Text, LLM Classification) to extract structured metadata, priorities, and actionable recommendations.
