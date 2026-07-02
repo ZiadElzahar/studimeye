@@ -14,12 +14,12 @@ if __name__ == "__main__":
         text="Someone just stole my backpack while I was waiting near Gate D. My passport and wallet are inside and my flight leaves in 2 hours!"
     )
     
-    # Example 2: Image + Text
-    # ticket_2 = Ticket(
-    #     ticket_id="T-002",
-    #     text="Look at what I found at the gate.",
-    #     image_path="/path/to/image.png"
-    # )
+    #   Example 2: voice + Text
+    ticket_2 = Ticket(
+         ticket_id="T-002",
+         text="Look at what I found at the gate.",
+         voice_path="/kaggle/input/datasets/birdy654/deep-voice-deepfake-voice-recognition/KAGGLE/AUDIO/REAL/margot-original.wav"
+ )
     
     result = agent.process(ticket_1)
     print("\n=== Agent Result ===")
