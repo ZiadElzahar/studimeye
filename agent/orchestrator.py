@@ -4,7 +4,6 @@ from agent.router import Router
 from agent.services import ToolService
 from agent.exceptions import AgentException, ToolExecutionError
 from tools.text_tool import TextTool
-from tools.image_tool import ImageTool
 from tools.speech_tool import SpeechTool
 from tools.recommendation_tool import RecommendationTool
 
@@ -16,7 +15,6 @@ class Orchestrator:
     def __init__(self, timeout_seconds: int = 300):
         # Instantiate tools
         self.text_tool = TextTool()
-        self.image_tool = ImageTool()
         self.speech_tool = SpeechTool()
         self.recommendation_tool = RecommendationTool()
         
@@ -25,7 +23,6 @@ class Orchestrator:
         self.router = Router(
             self.tool_service, 
             self.text_tool, 
-            self.image_tool, 
             self.speech_tool
         )
 
