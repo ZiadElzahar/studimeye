@@ -17,7 +17,7 @@ if __name__ == "__main__":
     #   Example 2: voice + Text
     ticket_2 = Ticket(
          ticket_id="T-002",
-         text="Look at what I found at the gate.",
+         
          voice_path="/kaggle/input/datasets/birdy654/deep-voice-deepfake-voice-recognition/KAGGLE/AUDIO/REAL/margot-original.wav"
  )
     
