@@ -4,6 +4,7 @@ from agent.router import Router
 from agent.services import ToolService
 from agent.exceptions import AgentException, ToolExecutionError
 from tools.text_tool import TextTool
+from tools.image_tool import ImageTool
 from tools.speech_tool import SpeechTool
 from tools.recommendation_tool import RecommendationTool
 
@@ -13,16 +14,16 @@ class Orchestrator:
     """Main Agent entry point. Exposes only the process() method."""
     
     def __init__(self, timeout_seconds: int = 300):
-        # Instantiate tools
         self.text_tool = TextTool()
+        self.image_tool = ImageTool()
         self.speech_tool = SpeechTool()
         self.recommendation_tool = RecommendationTool()
         
-        # Instantiate services
         self.tool_service = ToolService(timeout_seconds=timeout_seconds)
         self.router = Router(
             self.tool_service, 
             self.text_tool, 
+            self.image_tool,
             self.speech_tool
         )
 
@@ -35,6 +36,7 @@ class Orchestrator:
         try:
             # 1. Route & Preprocess
             merged_text = self.router.route(ticket)
+            result.extracted_text = merged_text
             
             # 2. Classification
             classification = self.tool_service.execute_tool(
@@ -42,7 +44,7 @@ class Orchestrator:
             )
             result.classification = classification
             
-            # 3. Summarization/Recommendation (Optional)
+            # 3. Summarization/Recommendation
             summary = self.tool_service.execute_tool(
                 self.recommendation_tool.process, merged_text
             )
