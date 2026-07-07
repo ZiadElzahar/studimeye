@@ -33,7 +33,7 @@ class SpeechTool:
             api_key = os.getenv("GEMINI_API_KEY")
             if api_key:
                 genai.configure(api_key=api_key)
-                self.gemini_model = genai.GenerativeModel("gemini-2.0-flash")
+                self.gemini_model = genai.GenerativeModel("Gemini 3.5 Flash")
                 print("SpeechTool (Gemini Correction) is ready!")
             else:
                 log.warning("No GEMINI_API_KEY found. Transcript correction is disabled.")
